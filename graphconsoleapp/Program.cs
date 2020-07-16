@@ -28,14 +28,14 @@ namespace graphconsoleapp
 
             var client = GetAuthenticatedGraphClient(config, userName, userPassword);
             // request 1 - get user's files
-            var request = client.Me.Drive.Root.Children.Request();
+            /* var request = client.Me.Drive.Root.Children.Request();
 
             var results = request.GetAsync().Result;
             foreach (var file in results)
             {
                 Console.WriteLine(file.Id + ": " + file.Name);
             }
-
+            */
             // request 2 - get specific file
             var fileId = "state.xlsx";
             var request = client.Me.Drive.Items[fileId].Request();
