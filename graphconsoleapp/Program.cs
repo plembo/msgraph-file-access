@@ -23,6 +23,10 @@ namespace graphconsoleapp
                 return;
             }
  
+            var userName = ReadUsername();
+            var userPassword = ReadPassword();
+
+            var client = GetAuthenticatedGraphClient(config, userName, userPassword);
         }
 
         private static IConfigurationRoot LoadAppSettings()
