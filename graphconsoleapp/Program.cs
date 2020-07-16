@@ -67,6 +67,11 @@ namespace graphconsoleapp
                     Console.WriteLine($"Uploaded {uploadBytes} bytes of {stream.Length} bytes");
                 });
                 // upload file
+                UploadResult<DriveItem> uploadResult = largeUploadTask.UploadAsync(uploadProgress).Result;
+                if (uploadResult.UploadSucceeded)
+                {
+                    Console.WriteLine("File uploaded to user's OneDrive root folder.");
+                }
             }
         }
 
