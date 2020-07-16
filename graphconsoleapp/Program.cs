@@ -62,7 +62,10 @@ namespace graphconsoleapp
                 var maxChunkSize = 320 * 1024;
                 var largeUploadTask = new LargeFileUploadTask<DriveItem>(uploadSession, stream, maxChunkSize);
                 // create progress implementation
-
+                IProgress<long> uploadProgress = new Progress<long>(uploadBytes =>
+                {
+                    Console.WriteLine($"Uploaded {uploadBytes} bytes of {stream.Length} bytes");
+                });
                 // upload file
             }
         }
