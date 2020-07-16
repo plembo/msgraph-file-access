@@ -39,10 +39,22 @@ namespace graphconsoleapp
             */
             // request 2 - get specific file
             var fileId = "01GS35PQD24WVUPNR6QFA2KYQA3MM3Y6XK";
-            var request = client.Me.Drive.Items[fileId].Request();
+            /* var request = client.Me.Drive.Items[fileId].Request();
 
             var results = request.GetAsync().Result;
             Console.WriteLine(results.Id + ": " + results.Name);
+            */
+            // request 3 - download specific file
+            // var fileId = "REPLACE_THIS";
+            var request = client.Me.Drive.Items[fileId].Content.Request();
+
+            var stream = request.GetAsync().Result;
+            var driveItemPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "driveItem_" + fileId + ".file");
+            var driveItemFile = System.IO.File.Create(driveItemPath);
+            stream.Seek(0, SeekOrigin.Begin);
+            stream.CopyTo(driveItemFile);
+            Console.WriteLine("Saved file to: " + driveItemPath);
+
             
         }
 
