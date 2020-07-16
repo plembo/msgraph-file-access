@@ -27,6 +27,7 @@ namespace graphconsoleapp
             var userPassword = ReadPassword();
 
             var client = GetAuthenticatedGraphClient(config, userName, userPassword);
+
             // request 1 - get user's files
             /* var request = client.Me.Drive.Root.Children.Request();
 
@@ -37,7 +38,7 @@ namespace graphconsoleapp
             }
             */
             // request 2 - get specific file
-            var fileId = "state.xlsx";
+            var fileId = "01GS35PQGOUPCPYH6RBFBYGDFRNLOZIRAB";
             var request = client.Me.Drive.Items[fileId].Request();
 
             var results = request.GetAsync().Result;
