@@ -36,6 +36,13 @@ namespace graphconsoleapp
                 Console.WriteLine(file.Id + ": " + file.Name);
             }
 
+            // request 2 - get specific file
+            var fileId = "state.xlsx";
+            var request = client.Me.Drive.Items[fileId].Request();
+
+            var results = request.GetAsync().Result;
+            Console.WriteLine(results.Id + ": " + results.Name);
+
         }
 
         private static IConfigurationRoot LoadAppSettings()
