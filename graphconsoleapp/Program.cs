@@ -15,29 +15,29 @@ namespace graphconsoleapp
         {
             Console.WriteLine("Hello World!");
         }
-    }
 
-    private static IConfigurationRoot LoadAppSettings()
-    {
-        try
+        private static IConfigurationRoot LoadAppSettings()
         {
-            var config = new ConfigurationBuilder()
-                            .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-                            .AddJsonFile("appsettings.json", false, true)
-                            .Build();
+            try
+            {
+                var config = new ConfigurationBuilder()
+                                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                                .AddJsonFile("appsettings.json", false, true)
+                                .Build();
 
-            if (string.IsNullOrEmpty(config["applicationId"]) ||
-                string.IsNullOrEmpty(config["tenantId"]))
+                if (string.IsNullOrEmpty(config["applicationId"]) ||
+                    string.IsNullOrEmpty(config["tenantId"]))
+                {
+                    return null;
+                }
+                return config;
+
+            }
+            catch (System.IO.FileNotFoundException)
             {
                 return null;
-            }
-            return config;
-
+            }   
         }
-        catch (System.IO.FileNotFoundException)
-        {
-            return null;
-        }   
     }
 
 }
