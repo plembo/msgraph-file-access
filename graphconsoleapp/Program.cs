@@ -44,7 +44,7 @@ namespace graphconsoleapp
             var results = request.GetAsync().Result;
             Console.WriteLine(results.Id + ": " + results.Name);
             */
-            
+
             // request 3 - download specific file
             // var fileId = "REPLACE_THIS";
             var request = client.Me.Drive.Items[fileId].Content.Request();
@@ -90,6 +90,7 @@ namespace graphconsoleapp
             List<string> scopes = new List<string>();
             scopes.Add("User.Read");
             scopes.Add("Files.Read");
+            scopes.Add("Files.ReadWrite");
 
             var cca = PublicClientApplicationBuilder.Create(clientId)
                                                     .WithAuthority(authority)
