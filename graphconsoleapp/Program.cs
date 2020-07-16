@@ -79,6 +79,14 @@ namespace graphconsoleapp
             return password;
         }
 
+        private static string ReadUsername()
+        {
+            string username;
+            Console.WriteLine("Enter your username");
+            username = Console.ReadLine();
+            return username;
+        }
+
     }
 
 }
