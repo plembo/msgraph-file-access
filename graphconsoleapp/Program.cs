@@ -38,6 +38,23 @@ namespace graphconsoleapp
                 return null;
             }   
         }
+
+        private static IAuthenticationProvider CreateAuthorizationProvider(IConfigurationRoot config, string userName, SecureString userPassword)
+        {
+            var clientId = config["applicationId"];
+            var authority = $"https://login.microsoftonline.com/{config["tenantId"]}/v2.0";
+
+            List<string> scopes = new List<string>();
+            scopes.Add("User.Read");
+            scopes.Add("Files.Read");
+
+            var cca = PublicClientApplicationBuilder.Create(clientId)
+                                                    .WithAuthority(authority)
+                                                    .Build();
+            return MsalAuthenticationProvider.GetInstance(cca, scopes.ToArray(), userName, userPassword);
+        }
+
+
     }
 
 }
