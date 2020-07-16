@@ -29,7 +29,7 @@ namespace graphconsoleapp
             var client = GetAuthenticatedGraphClient(config, userName, userPassword);
 
             // request 1 - upload small file to user's onedrive
-            var fileName = "smallfile.txt";
+            /* var fileName = "smallfile.txt";
             var filePath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), fileName);
             Console.WriteLine("Uploading file: " + fileName);
 
@@ -41,7 +41,11 @@ namespace graphconsoleapp
                                         .PutAsync<DriveItem>(fileStream)
                                         .Result;
             Console.WriteLine("File uploaded to: " + uploadedFile.WebUrl);
-                        
+            */
+            // request 2 - upload large file to user's onedrive
+            var fileName = "largefile.zip";
+            var filePath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), fileName);
+            Console.WriteLine("Uploading file: " + fileName);            
         }
 
         private static IConfigurationRoot LoadAppSettings()
