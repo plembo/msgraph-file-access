@@ -45,7 +45,25 @@ namespace graphconsoleapp
             // request 2 - upload large file to user's onedrive
             var fileName = "largefile.zip";
             var filePath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), fileName);
-            Console.WriteLine("Uploading file: " + fileName);            
+            Console.WriteLine("Uploading file: " + fileName);
+
+                        
+            // load resource as a stream
+            using (Stream stream = new FileStream(filePath, FileMode.Open))
+            {
+                var uploadSession = client.Me.Drive.Root
+                                                .ItemWithPath(fileName)
+                                                .CreateUploadSession()
+                                                .Request()
+                                                .PostAsync()
+                                                .Result;
+
+                // create upload task
+
+                // create progress implementation
+
+                // upload file
+            }
         }
 
         private static IConfigurationRoot LoadAppSettings()
