@@ -60,6 +60,25 @@ namespace graphconsoleapp
             var graphClient = new GraphServiceClient(authenticationProvider);
             return graphClient;
         }
+
+        private static SecureString ReadPassword()
+        {
+            Console.WriteLine("Enter your password");
+            SecureString password = new SecureString();
+            while (true)
+            {
+                ConsoleKeyInfo c = Console.ReadKey(true);
+                if (c.Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
+                password.AppendChar(c.KeyChar);
+                Console.Write("*");
+            }
+            Console.WriteLine();
+            return password;
+        }
+
     }
 
 }
