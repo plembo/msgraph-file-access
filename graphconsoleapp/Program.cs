@@ -28,6 +28,31 @@ namespace graphconsoleapp
 
             var client = GetAuthenticatedGraphClient(config, userName, userPassword);
 
+            // request 1 - get trending files around a specific user (me)
+            /* var request = client.Me.Insights.Trending.Request();
+
+            var results = request.GetAsync().Result;
+            foreach (var resource in results)
+            {
+                Console.WriteLine("(" + resource.ResourceVisualization.Type + ") - " +resource.ResourceVisualization.Title);
+                Console.WriteLine("  Weight: " + resource.Weight);
+                Console.WriteLine("  Id: " + resource.Id);
+                Console.WriteLine("  ResourceId: " + resource.ResourceReference.Id);
+            } */
+            // request 2 - used files
+            var request = client.Me.Insights.Used.Request();
+
+            var results = request.GetAsync().Result;
+            foreach (var resource in results)
+            {
+                Console.WriteLine("(" + resource.ResourceVisualization.Type + ") - " +resource.ResourceVisualization.Title);
+                Console.WriteLine("  Last Accessed: " + resource.LastUsed.LastAccessedDateTime.ToString());
+                Console.WriteLine("  Last Modified: " + resource.LastUsed.LastModifiedDateTime.ToString());
+                Console.WriteLine("  Id: " + resource.Id);
+                Console.WriteLine("  ResourceId: " + resource.ResourceReference.Id);
+            }
+
+
         }
 
         private static IConfigurationRoot LoadAppSettings()
