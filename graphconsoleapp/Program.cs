@@ -14,6 +14,15 @@ namespace graphconsoleapp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+    
+
+            var config = LoadAppSettings();
+            if (config == null)
+            {
+                Console.WriteLine("Invalid appsettings.json file.");
+                return;
+            }
+ 
         }
 
         private static IConfigurationRoot LoadAppSettings()
