@@ -38,12 +38,12 @@ namespace graphconsoleapp
             }
             */
             // request 2 - get specific file
-            var fileId = "01GS35PQGOUPCPYH6RBFBYGDFRNLOZIRAB";
+            var fileId = "01GS35PQD24WVUPNR6QFA2KYQA3MM3Y6XK";
             var request = client.Me.Drive.Items[fileId].Request();
 
             var results = request.GetAsync().Result;
             Console.WriteLine(results.Id + ": " + results.Name);
-
+            
         }
 
         private static IConfigurationRoot LoadAppSettings()
