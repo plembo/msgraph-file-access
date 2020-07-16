@@ -27,6 +27,15 @@ namespace graphconsoleapp
             var userPassword = ReadPassword();
 
             var client = GetAuthenticatedGraphClient(config, userName, userPassword);
+            // request 1 - get user's files
+            var request = client.Me.Drive.Root.Children.Request();
+
+            var results = request.GetAsync().Result;
+            foreach (var file in results)
+            {
+                Console.WriteLine(file.Id + ": " + file.Name);
+            }
+
         }
 
         private static IConfigurationRoot LoadAppSettings()
