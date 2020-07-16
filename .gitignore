@@ -4,3 +4,4 @@ Debug/
 obj/
 *.cache
 
+appsettings.json
